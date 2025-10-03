@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta name="google-site-verification" content="7OCwSNaLeEeHm82sAVrKzi0jWCevcYh-05eiK_bEDfg" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mentions Légales - IDA Cours</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ===== VARIABLES ET RESET ===== */
+        :root {
+            --primary: #0A2463;
+            --primary-light: rgb(48, 48, 126);
+            --primary-dark: #061A40;
+            --secondary: #525dbd;
+            --accent: #EF476F;
+            --text: #1A1A2E;
+            --text-light: #6C757D;
+            --light: #F8F9FA;
+            --white: #FFFFFF;
+            --gradient: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            --gradient-secondary: linear-gradient(135deg, var(--secondary) 0%, blue 100%);
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 25px 50px rgba(0, 0, 0, 0.15);
+            --radius: 12px;
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.7;
+            color: var(--text);
+            background-color: var(--light);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            line-height: 1.3;
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: 3rem;
+        }
+
+        h2 {
+            font-size: 2.2rem;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+            color: var(--text-light);
+            font-size: 1.1rem;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        /* ===== HEADER ===== */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+        }
+
+        header.scrolled {
+            padding: 10px 0;
+            background: rgba(255, 255, 255, 0.98);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            transition: var(--transition);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 50px;
+            transition: var(--transition);
+        }
+
+        header.scrolled .logo img {
+            height: 40px;
+        }
+
+        .logo-text {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 1.5rem;
+            margin-left: 10px;
+            color: var(--primary);
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-list {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-link {
+            font-weight: 500;
+            position: relative;
+            padding: 5px 0;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--secondary);
+            transition: var(--transition);
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            margin-left: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: var(--gradient);
+            color: var(--white);
+            box-shadow: 0 5px 15px rgba(10, 36, 99, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(10, 36, 99, 0.4);
+        }
+
+        .mobile-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary);
+        }
+
+        /* ===== MENTIONS LÉGALES ===== */
+        .legal-container {
+            max-width: 1000px;
+            margin: 120px auto 40px;
+            background: var(--white);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-lg);
+            overflow: hidden;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .legal-header {
+            background: var(--gradient);
+            color: var(--white);
+            padding: 60px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .legal-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1589829545856-d10d557cf95f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') no-repeat center center/cover;
+            opacity: 0.1;
+        }
+
+        .legal-header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .legal-header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            color: rgba(255, 255, 255, 0.9);
+            position: relative;
+            z-index: 1;
+        }
+
+        .legal-content {
+            padding: 60px;
+        }
+
+        .legal-section {
+            margin-bottom: 40px;
+            padding: 40px;
+            border-radius: var(--radius);
+            background: var(--light);
+            border-left: 5px solid var(--primary);
+            transition: var(--transition);
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .legal-section:nth-child(2) { animation-delay: 0.1s; }
+        .legal-section:nth-child(3) { animation-delay: 0.2s; }
+        .legal-section:nth-child(4) { animation-delay: 0.3s; }
+        .legal-section:nth-child(5) { animation-delay: 0.4s; }
+
+        .legal-section:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow);
+        }
+
+        .legal-section h2 {
+            color: var(--text);
+            margin-bottom: 25px;
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .legal-section h2 i {
+            color: var(--primary);
+            width: 50px;
+            height: 50px;
+            background: var(--white);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: var(--shadow);
+        }
+
+        .legal-section p {
+            margin-bottom: 15px;
+            color: var(--text-light);
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .legal-section strong {
+            color: var(--primary);
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .info-card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: var(--radius);
+            border: 2px solid #e9ecef;
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .info-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+            box-shadow: var(--shadow);
+        }
+
+        .info-card h3 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .info-card pre {
+            background: var(--light);
+            padding: 15px;
+            border-radius: var(--radius);
+            font-family: 'Montserrat', sans-serif;
+            margin-top: 15px;
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        .footer-note {
+            text-align: center;
+            padding: 40px;
+            background: var(--light);
+            margin-top: 50px;
+            border-radius: var(--radius);
+            color: var(--text-light);
+            font-style: italic;
+            border-top: 3px solid var(--secondary);
+        }
+
+        .footer-note p {
+            margin-bottom: 10px;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--primary-dark);
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+            margin-top: 80px;
+        }
+
+        .footer-wave {
+            position: absolute;
+            top: -50px;
+            left: 0;
+            width: 100%;
+            height: 50px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" fill="%23ffffff"></path></svg>');
+            background-size: cover;
+        }
+
+        .footer-content {
+            padding: 80px 0 40px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 40px;
+        }
+
+        .footer-logo {
+            margin-bottom: 20px;
+        }
+
+        .footer-logo img {
+            height: 50px;
+        }
+
+        .footer-about p {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 25px;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: var(--transition);
+        }
+
+        .social-icon:hover {
+            background: var(--secondary);
+            transform: translateY(-3px);
+        }
+
+        .footer-links h3,
+        .footer-contact h3 {
+            color: var(--white);
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-links h3::after,
+        .footer-contact h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--secondary);
+        }
+
+        .footer-links ul {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary);
+            padding-left: 5px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .contact-item i {
+            color: var(--secondary);
+            margin-right: 15px;
+            margin-top: 5px;
+        }
+
+        .contact-item span {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .legal-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 30px 0;
+            padding: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .legal-links a {
+            color: rgba(255, 255, 255, 0.7);
+            transition: var(--transition);
+            font-weight: 500;
+        }
+
+        .legal-links a:hover {
+            color: var(--secondary);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding: 25px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+        }
+
+        /* ===== BACK TO TOP ===== */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--gradient);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: var(--shadow);
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            z-index: 99;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-5px);
+        }
+
+        /* ===== ANIMATIONS ===== */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ===== RESPONSIVE STYLES ===== */
+        @media (max-width: 1200px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .mobile-toggle {
+                display: block;
+            }
+            
+            .nav-menu {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 80%;
+                height: calc(100vh - 80px);
+                background: var(--white);
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 40px;
+                box-shadow: var(--shadow-lg);
+                transition: var(--transition);
+            }
+            
+            .nav-menu.active {
+                left: 0;
+            }
+            
+            .nav-list {
+                flex-direction: column;
+                width: 100%;
+                margin-bottom: 30px;
+            }
+            
+            .nav-cta {
+                margin-left: 0;
+                width: 100%;
+            }
+            
+            .nav-cta .btn {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .legal-content {
+                padding: 40px 25px;
+            }
+            
+            .legal-header {
+                padding: 40px 25px;
+            }
+            
+            .legal-header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .legal-section {
+                padding: 30px;
+            }
+            
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .legal-links {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 576px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.8rem;
+            }
+            
+            .legal-header h1 {
+                font-size: 2rem;
+            }
+            
+            .container {
+                padding: 0 15px;
+            }
+            
+            .legal-section {
+                padding: 25px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="container header-container">
+            <div class="logo">
+                <img src="assettes/sdbsn.png" alt="SDBSN Codes Logo">
+                <span class="logo-text">SDBSN Codes</span>
+            </div>
+            
+            <div class="mobile-toggle" id="mobileToggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            
+            <nav class="nav-menu" id="navMenu">
+                <ul class="nav-list">
+                    <li><a href="index.htm" class="nav-link">Accueil</a></li>
+                    <li><a href="index.htm#about" class="nav-link">À propos</a></li>
+                    <li><a href="index.htm#services" class="nav-link">Services</a></li>
+                    <li><a href="index.htm#contact" class="nav-link">Contact</a></li>
+                </ul>
+                <div class="nav-cta">
+                    <a href="https://sdbsn-codes.netlify.app/" class="btn btn-primary">Commencer maintenant</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Mentions Légales -->
+    <div class="legal-container">
+        <div class="legal-header">
+            <h1><i class="fas fa-balance-scale"></i> Mentions Légales</h1>
+            <p>Informations légales concernant le site IDA Cours</p>
+        </div>
+
+        <div class="legal-content">
+            <div class="legal-section">
+                <h2><i class="fas fa-user-tie"></i> Éditeur du Site</h2>
+                <p><strong>Nom :</strong> Seydou Bakhayokho</p>
+                <p><strong>Statut :</strong> Étudiant en Informatique</p>
+                <p><strong>Établissement :</strong> Université Numérique Cheikh Hamidou KANE (UNCHK)</p>
+                <p><strong>Spécialisation :</strong> Développement Web Frontend, Cybersécurité & Analyse de données</p>
+                <p><strong>Adresse :</strong> Dalifort, Pikine, Sénégal</p>
+            </div>
+
+            <div class="legal-section">
+                <h2><i class="fas fa-server"></i> Hébergement</h2>
+                <p><strong>Hébergeur :</strong> Netlify, Inc.</p>
+                <p><strong>Adresse :</strong> 2325 3rd Street, Suite 296, San Francisco, California 94107, États-Unis</p>
+                <p><strong>Site web :</strong> <a href="https://www.netlify.com" style="color: var(--primary); text-decoration: none; font-weight: 600;">https://www.netlify.com</a></p>
+            </div>
+
+            <div class="legal-section">
+                <h2><i class="fas fa-code"></i> Développement & Publication</h2>
+                <p><strong>Directeur de la publication :</strong> Seydou Bakhayokho</p>
+                <p><strong>Plateforme de développement :</strong> GitHub</p>
+                <p><strong>Technologies utilisées :</strong> HTML, CSS, JavaScript, Netlify</p>
+                <p>Le site a été développé dans un cadre éducatif et professionnel.</p>
+            </div>
+
+            <div class="legal-section">
+                <h2><i class="fas fa-shield-alt"></i> Propriété Intellectuelle</h2>
+                <p>L'ensemble de ce site relève de la législation sénégalaise et internationale sur le droit d'auteur et la propriété intellectuelle.</p>
+                <p>Tous les droits de reproduction sont réservés, y compris pour les documents téléchargeables et les représentations iconographiques et photographiques.</p>
+            </div>
+
+            <div class="info-grid">
+                <div class="info-card">
+                    <h3><i class="fas fa-graduation-cap"></i> Mission du Site</h3>
+                    <p>IDA Cours a pour objectif de fournir des ressources éducatives et des cours en ligne accessibles à tous les apprenants.</p>
+                </div>
+                
+                <div class="info-card">
+                    <h3><i class="fas fa-envelope"></i> Contact</h3>
+                    <p>Pour toute question concernant les mentions légales, vous pouvez contacter le directeur de publication aux coordonnées mentionnées ci-dessous.</p>
+                    <pre>77-362-45-39 && 76-468-58-65</pre>
+                </div>
+            </div>
+
+            <div class="footer-note">
+                <p><i class="fas fa-info-circle"></i> Dernière mise à jour : 29/09/2025.</p>
+                <p>Ce site est maintenu à titre éducatif et professionnel.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="modern-footer">
+    <div class="footer-wave"></div>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <div class="footer-logo">
+                        <img src="actifs/sdbsn.png" alt="SDBSN Codes Logo">
+                    </div>
+                    <p>Votre partenaire de confiance pour une formation en ligne de qualité. Développez vos compétences et construisez votre avenir avec nous.</p>
+                    <div class="footer-social">
+                        <a href="https://www.instagram.com/princeseydoubhk" class="social-icon" target="_blank" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://twitter.com/Sdbsntech" class="social-icon" target="_blank" aria-label="Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/seydou-bakhayokho-864070343" class="social-icon" target="_blank" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://www.youtube.com/channel/UCCZJBOaAPdAoTiD-iJ2ftkg" class="social-icon" target="_blank" aria-label="YouTube">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="https://github.com/Sdbsntech" class="social-icon" target="_blank" aria-label="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Liens rapides</h3>
+                    <ul>
+                        <li><a href="index.htm">Accueil</a></li>
+                        <li><a href="index.htm#about">À propos</a></li>
+                        <li><a href="index.htm#services">Services</a></li>
+                        <li><a href="index.htm#contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Nos services</h3>
+                    <ul>
+                        <li><a href="index.htm#services">Développement Frontend</a></li>
+                        <li><a href="index.htm#services">Développement Backend</a></li>
+                        <li><a href="index.htm#services">Développement Mobile</a></li>
+                        <li><a href="index.htm#services">Bases de données</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-contact">
+                    <h3>Contact</h3>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>DAKAR, PIKINE, DALIFORT</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>+221 77 362 45 39</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>sdbsntech@gmail.com</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="legal-links">
+            <a href="plitiquedeconfi.html">Politique de confidentialité</a>
+            <a href="condition.htm">Conditions d'utilisation</a>
+            <a href="mention_legale.html">Mentions légales</a>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 SDBSN Codes. Plateforme réalisée par Seydou Bakhayokho.</p>
+        </div>
+    </div>
+</footer>
+
+    <!-- Back to Top -->
+    <div class="back-to-top" id="backToTop">
+        <i class="fas fa-chevron-up"></i>
+    </div>
+
+    <script>
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+            
+            // Back to top button
+            const backToTop = document.getElementById('backToTop');
+            if (window.scrollY > 500) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        // Mobile menu toggle
+        const mobileToggle = document.getElementById('mobileToggle');
+        const navMenu = document.getElementById('navMenu');
+        
+        mobileToggle.addEventListener('click', function() {
+            navMenu.classList.toggle('active');
+            mobileToggle.innerHTML = navMenu.classList.contains('active') ? 
+                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        });
+
+        // Close mobile menu when clicking on a link
+        const navLinks = document.querySelectorAll('.nav-link');
+        navLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                navMenu.classList.remove('active');
+                mobileToggle.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+
+        // Back to top
+        const backToTop = document.getElementById('backToTop');
+        backToTop.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Animation au scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observer toutes les sections
+        document.querySelectorAll('.legal-section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(30px)';
+            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
