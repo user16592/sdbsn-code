@@ -4,11 +4,22 @@ import re
 META_TAG = '<meta name="google-site-verification" content="w1WK4nbTuDnvjHJNmmbSghgSV8akwX1GuZ9haPwgoK4" />'
 
 
-def insert_meta_into_content(content: str) -> (str, bool):
-    """Insert META_TAG into the <head> of the HTML content if not present.
-    Returns a tuple of (new_content, changed).
+def insert_or_replace_meta(content: str) -> (str, bool):
+    """Ensure the META_TAG exists in the <head> of the HTML content.
+    If an existing google-site-verification meta tag is present, replace it.
+    Otherwise insert the META_TAG into <head> (or create a <head> if missing).
+    Returns (new_content, changed).
     """
-    if 'google-site-verification' in content:
+    changed = False
+
+    # Pattern to match any google-site-verification meta tag
+    meta_re = re.compile(r'<meta[^>]+name=["\']google-site-verification["\'][^>]*>', re.IGNORECASE)
+
+    # If a meta tag exists, replace all occurrences with the desired META_TAG
+    if meta_re.search(content):
+        new_content = meta_re.sub(META_TAG, content)
+        if new_content != content:
+            return new_content, True
         return content, False
 
     # If there's an opening <head> tag, insert right after it
@@ -37,7 +48,7 @@ def process_file(path: str) -> bool:
         print(f"[SKIP] Could not read {path}: {e}")
         return False
 
-    new_content, changed = insert_meta_into_content(content)
+    new_content, changed = insert_or_replace_meta(content)
     if changed:
         try:
             with open(path, 'w', encoding='utf-8') as f:
